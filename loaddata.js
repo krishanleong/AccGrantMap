@@ -19,7 +19,7 @@ const seedDB = async() => {
     await Business.deleteMany({});
 
     const results = await excelToJson({
-        sourceFile: 'accgrantmap.xlsx'
+        sourceFile: 'accgrantmaptest.xlsx'
     });
 
      console.log (results);
@@ -33,7 +33,7 @@ const seedDB = async() => {
             limit: 1
         }).send();
         
-        console.log (address);
+        // console.log (address);
         const business = new Business({
             service: row.A,
             name: row.B,
