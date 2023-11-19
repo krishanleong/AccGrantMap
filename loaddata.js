@@ -19,10 +19,10 @@ const seedDB = async() => {
     await Business.deleteMany({});
 
     const results = await excelToJson({
-        sourceFile: 'accgrantmaptest.xlsx'
+        sourceFile: 'accgrantmap.xlsx'
     });
 
-     console.log (results);
+    //  console.log (results);
     
      for (const row of results.Sheet1.slice(1)) {
         const zip = String (row.F).slice(0,5);
@@ -48,7 +48,7 @@ const seedDB = async() => {
 
         business.geometry = geoData.body.features[0].geometry;
         await business.save();
-        console.log ('saves a busines', business);
+        // console.log ('saves a busines', business);
     }
 }
 seedDB();

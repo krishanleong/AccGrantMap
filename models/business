@@ -1,0 +1,33 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const BusinessSchema = new Schema ({ 
+    service: String,
+    name: String,
+    website: String,
+    email: String,
+    city: String,
+    state: String,
+    zip: Number,
+    grade: String,
+    subject: String,
+    geometry: {
+        type: {
+            type: String, // Don't do `{ location: { type: String } }`
+            enum: ['Point'], // 'location.type' must be 'Point'
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        },
+    }
+
+});
+
+BusinessSchema.virtual ('properties.popUpMarkup').get(function () { 
+    return `<a href="${this.website}">${this.name}</a>`
+})
+
+
+module.exports = mongoose.model("Business", BusinessSchema);

@@ -7,8 +7,8 @@ const map = new mapboxgl.Map({
     container: 'map',
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: 'mapbox://styles/mapbox/dark-v11',
-    center: [-103.5917, 40.6699],
-    zoom: 3
+    center: [-78.267008,37.803259],    
+    zoom: 6
 });
 
 map.on('load', () => {
@@ -19,19 +19,7 @@ map.on('load', () => {
         type: 'geojson',
         // Point to GeoJSON data. This example visualizes all M1.0+ campgroundsakes
         // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-        data: {
-            type: 'FeatureCollection',
-            features: allBusiness.map(business => ({
-                type: 'Feature',
-                geometry: business.geometry,
-                properties: {
-                    // Add any additional properties you want to use in the map
-                    name: business.name,
-                    service: business.service,
-                    // Add more properties as needed
-                }
-            }))
-        },
+        data: allBusiness,
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -118,8 +106,10 @@ map.on('load', () => {
     // the location of the feature, with
     // description HTML from its properties.
     map.on('click', 'unclustered-point', (e) => {
+        const text = e.features[0].properties.popUpMarkup;
         // const text = e.features[0].properties.popUpMarkup;
         const coordinates = e.features[0].geometry.coordinates.slice();
+        
         // Ensure that if the map is zoomed out such that
         // multiple copies of the feature are visible, the
         // popup appears over the copy being pointed to.
@@ -129,6 +119,7 @@ map.on('load', () => {
 
         new mapboxgl.Popup()
             .setLngLat(coordinates)
+            .setHTML (text)
             .addTo(map);
     });
 
