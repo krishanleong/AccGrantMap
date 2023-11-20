@@ -28,6 +28,16 @@ const seedDB = async() => {
         const zip = String (row.F).slice(0,5);
         const address = `${row.E}, VA ${zip}`    
         
+        let website = String (row.C);
+        
+        // if (website && website.slice(0,4) !== 'http') { 
+        //     website = 'http://' + website;
+        // }
+        // else
+        // {
+        //     website = '';
+        // }
+
         const geoData = await geocoder.forwardGeocode({
             query: address,
             limit: 1
@@ -38,7 +48,7 @@ const seedDB = async() => {
             service: row.A,
             name: row.B,
             website: row.C,
-            // email: String,
+            email: row.D,
             city: row.E,
             state: 'VA',
             zip: zip,
