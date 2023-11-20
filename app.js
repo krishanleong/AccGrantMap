@@ -15,22 +15,38 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://127.0.0.1:27017/accgrantmap', {});
 
 
 app.get ('/showLocal', async (req, res) => { 
+    console.log (req.body);
     const allBusiness = await Business.find({city: "Charlottesville"});
     
-    console.log ("result of Mongo Search", allBusiness);
+    //console.log ("result of Mongo Search", allBusiness);
     res.render('showLocal', {allBusiness});
 });
 
-app.get ('/search', async (req, res) => { 
-    const allBusiness = await Business.find({city: "Charlottesville"});
+
+app.post ('/showLocal', async (req, res) => { 
+    let {city} = req.body;
     
-    console.log ("result of Mongo Search", allBusiness);
-   res.render('search')
+    //uppercase first word in city
+    city = city.charAt(0).toUpperCase() + city.slice(1);    
+    console.log (city);
+    const allBusiness = await Business.find({city});
+    
+    //console.log ("result of Mongo Search", allBusiness);
+    res.render('showLocal', {allBusiness});
+});
+
+app.get ('/search', async (req, res) => {     
+    res.render('search');
+});
+
+app.get ('/', async (req, res) => {     
+    res.render('home');
 });
 
 app.get ('/map', async (req, res) => { 
