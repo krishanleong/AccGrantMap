@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Providers</title>
+</head>
+<body>
+    <h1 class="text-center">Local Providers</h1>
+    <div class="row">
+    <% for (let business of allBusiness) { %>
+
+        <div class="col-2 mb-3">
+        <div class="card border mb-3" style="width: 18rem; height:280px">
+            <div class="card-body">
+              <h5 class="card-title"><%= business.name  %></h5>
+              <p class="card-text"><%= business.city  %></p>
+              <a href="<%=business.email  %>" class="btn btn-success mb-3"><%= business.email  %></a>
+              <% if (business.website) { %>
+              <a href="<%=business.website  %>" class="btn btn-success mb-3">Website: <%= business.name  %></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+</body>
+</html>
