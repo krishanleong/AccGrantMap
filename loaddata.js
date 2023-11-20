@@ -22,12 +22,13 @@ const seedDB = async() => {
         sourceFile: 'accgrantmap.xlsx'
     });
 
-    //  console.log (results);
+    console.log (results.Sheet1.length);
     
      for (const row of results.Sheet1.slice(1)) {
         const zip = String (row.F).slice(0,5);
         const address = `${row.E}, VA ${zip}`    
         
+    
         let website = String (row.C);
         
         // if (website && website.slice(0,4) !== 'http') { 
@@ -60,5 +61,7 @@ const seedDB = async() => {
         await business.save();
         // console.log ('saves a busines', business);
     }
+    console.log ('finished load');
+    mongoose.connection.close(); // Close the MongoDB connection
 }
 seedDB();
