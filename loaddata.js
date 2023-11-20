@@ -31,13 +31,10 @@ const seedDB = async() => {
     
         let website = String (row.C);
         
-        // if (website && website.slice(0,4) !== 'http') { 
-        //     website = 'http://' + website;
-        // }
-        // else
-        // {
-        //     website = '';
-        // }
+        if (website.substring (0,3) === 'www' ) { 
+             website = 'http://' + website;
+             console.log (website);
+        }
 
         const geoData = await geocoder.forwardGeocode({
             query: address,
