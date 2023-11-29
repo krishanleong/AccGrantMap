@@ -45,15 +45,15 @@ app.get ('/search', async (req, res) => {
     res.render('search');
 });
 
-app.get ('/', async (req, res) => {     
-    res.render('home');
-});
-
 app.get ('/map', async (req, res) => { 
     const allBusiness = await Business.find({});
     console.log ('hit map route');
     console.log ("result of Mongo Search", allBusiness);
     res.render('map', {allBusiness});
+});
+
+app.get ('/*', async (req, res) => {     
+    res.render('search');
 });
 
 app.listen(3000, () => {
