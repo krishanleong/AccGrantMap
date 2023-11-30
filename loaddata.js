@@ -2,6 +2,8 @@ if (process.env.NODE_ENV !== "production")
 {
     require('dotenv').config();
 }
+
+const { v4: uuidv4 } = require('uuid');
 const mongoose = require('mongoose');
 const Business = require('./models/business');
 const mbxGeocoding = require ('@mapbox/mapbox-sdk/services/geocoding');
@@ -35,6 +37,10 @@ const seedDB = async() => {
              website = 'http://' + website;
              console.log (website);
         }
+        else
+        {
+            website = null;
+        }
 
         const geoData = await geocoder.forwardGeocode({
             query: address,
@@ -43,9 +49,10 @@ const seedDB = async() => {
         
         // console.log (address);
         const business = new Business({
+            id: uuidv4(),
             service: row.A,
             name: row.B,
-            website: row.C,
+            website: website,
             email: row.D,
             city: row.E,
             state: 'VA',

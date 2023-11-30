@@ -1,6 +1,5 @@
 
 const express = require('express');
-
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
@@ -41,9 +40,14 @@ app.post ('/showLocal', async (req, res) => {
     res.render('showLocal', {allBusiness});
 });
 
-app.get ('/search', async (req, res) => {     
+app.get ('/search', (req, res) => {     
     res.render('search');
 });
+
+app.get ('/showTutor', async (req, res) => {     
+    res.render('showTutor');
+});
+
 
 app.get ('/map', async (req, res) => { 
     const allBusiness = await Business.find({});
