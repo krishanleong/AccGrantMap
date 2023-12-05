@@ -29,7 +29,8 @@ app.post("/showLocal", async (req, res) => {
   city = city.charAt(0).toUpperCase() + city.slice(1);
   console.log(city);
   const allBusiness = await Business.find({ city });
-
+  finalSorter(allBusiness);
+  console.log(allBusiness);
   //console.log ("result of Mongo Search", allBusiness);
   res.render("showLocal", { allBusiness });
 });
@@ -48,7 +49,23 @@ app.get("/showLocal", async (req, res) => {
   //console.log ("result of Mongo Search", allBusiness);
   res.render("showLocal", { allBusiness });
 });
+const sorterOfNullValues = (a, b) => {
+  return assignValueOfNullAtEnd(a.website).localeCompare(
+    assignValueOfNullAtEnd(b.website)
+  );
+};
 
+const assignValueOfNullAtEnd = (val) => {
+  if (val === null) {
+    return "ZZZZZZZZZZZZZZZZ";
+  } else {
+    return val;
+  }
+};
+
+function finalSorter(arr) {
+  return arr.sort(sorterOfNullValues);
+}
 app.get("/search", (req, res) => {
   res.render("search");
 });

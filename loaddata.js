@@ -32,6 +32,7 @@ const seedDB = async () => {
   for (const row of results.Sheet1.slice(1)) {
     const zip = String(row.F).slice(0, 5);
     const address = `${row.E}, VA ${zip}`;
+    const prio = 1;
 
     let website = String(row.C);
 
@@ -62,6 +63,7 @@ const seedDB = async () => {
       grade: String,
       subject: row.H,
       specializedservices: row.I,
+      priority: prio,
     });
 
     business.geometry = geoData.body.features[0].geometry;
