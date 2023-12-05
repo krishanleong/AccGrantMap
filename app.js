@@ -47,6 +47,10 @@ app.get("/search", (req, res) => {
   res.render("search");
 });
 
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
 app.get("/showTutor", async (req, res) => {
   res.render("showTutor");
 });
