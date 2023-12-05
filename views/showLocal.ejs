@@ -1,20 +1,29 @@
 <% layout('boilerplate') %>
 
-
-<h1 class="text-center my-6">Local Providers</h1>
+<h1 class="text-center mt-6">Local Providers</h1>
 <div class="row">
-<% for (let business of allBusiness) { %>
-    
-    <div class="card col-md-3 border m-3 shadow-sm" style="width: 18rem; height:280px">
-        <div class="card-body m-3 p-6">
-            <h5 class="card-title"><%= business.name  %></h5>
-            <p class="card-text"><%= business.city  %></p>
-            <a href="mailto:<%=business.email  %>" class="btn btn-success mb-3">Email Provider</a>
-            <% if (business.website) { %>
-            <a href="<%=business.website %>" target="_blank" class="btn btn-success mb-3">Website: <%= business.name.substr(0,8)  %></a>
-            <% } %>
-        </div>
-        </div>
-    
-    <% } %>
+  <% for (let business of allBusiness) { %>
+
+  <div
+    class="card col-md-3 border m-3 shadow-sm"
+    style="width: 18rem; height: 280px"
+  >
+    <div class="card-body m-3 p-6">
+      <h5 class="card-title"><%= business.name %></h5>
+      <p class="card-text"><%= business.city %></p>
+      <a href="mailto:<%=business.email  %>" class="btn btn-success mb-3"
+        >Email Provider</a
+      >
+      <% if (business.website) { %>
+      <a
+        href="<%=business.website %>"
+        target="_blank"
+        class="btn btn-success mb-3"
+        >Website: <%= business.name.substr(0,8) %></a
+      >
+      <% } %>
+    </div>
+  </div>
+
+  <% } %>
 </div>
