@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -12,8 +16,10 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: true }));
+// const dbURL = "mongodb://127.0.0.1:27017/accgrantmap";
 
-mongoose.connect("mongodb://127.0.0.1:27017/accgrantmap", {});
+const dbURL = process.env.DB_URL;
+mongoose.connect(dbURL, {});
 
 app.post("/showLocal", async (req, res) => {
   console.log("In show city route", req.params);
@@ -57,8 +63,6 @@ app.get("/showTutor", async (req, res) => {
 
 app.get("/map", async (req, res) => {
   const allBusiness = await Business.find({});
-  console.log("hit map route");
-  console.log("result of Mongo Search", allBusiness);
   res.render("map", { allBusiness });
 });
 

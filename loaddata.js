@@ -15,7 +15,10 @@ if (!mapBoxToken) {
   );
 }
 geocoder = mbxGeocoding({ accessToken: mapBoxToken });
-mongoose.connect("mongodb://127.0.0.1:27017/accgrantmap", {});
+
+const dbURL = process.env.DB_URL;
+// const dbURL = "mongodb://127.0.0.1:27017/accgrantmap";
+mongoose.connect(dbURL, {});
 
 const seedDB = async () => {
   await Business.deleteMany({});
