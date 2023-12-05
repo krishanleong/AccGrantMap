@@ -28,6 +28,13 @@ app.post("/showLocal", async (req, res) => {
   res.render("showLocal", { allBusiness });
 });
 
+app.get("/showLocal/:id", async (req, res) => {
+  const { id } = req.params;
+  const business = await Business.findById(id);
+  console.log(business);
+  res.render("showTutor", { business });
+});
+
 app.get("/showLocal", async (req, res) => {
   console.log(req.body);
   const allBusiness = await Business.find({ city: "Charlottesville" });

@@ -1,18 +1,56 @@
 <% layout('boilerplate') %>
 
+    <h1 class="text-center my-6">
+        <%= business.name %>
+    </h1>
+    <div class="row">
+        <div class="card col-md-9 border m-3 shadow-sm" style="width: 80%; height: 80%">
+            <div class="card-body m-3 p-6">
+                <h5 class="card-title">
+                    <%= business.name %>, <%= business.city %>
+                            <%= business.zip %>
+                </h5>
+                <p class="card-text">Service Provided: <%=business.service %>
+                </p>
+                <div class="row">
+                    <!-- subjects card -->
+                    <div class="card col-md-9 border m-3 shadow-sm" style="width: 30%; height: 30%">
+                        <div class="card-body m-3 p-6">
+                            <h5 class="card-title">Subjects</h5>
+                            <p class="card-text">
+                                <%= business.subject %>
+                            </p>
+                        </div>
+                    </div>
 
-<h1 class="text-center my-6">Local Providers</h1>
-<div class="row">
-    
-    <div class="card col-md-3 border m-3 shadow-sm" style="width: 18rem; height:280px">
-        <div class="card-body m-3 p-6">
-            <h5 class="card-title"><%= business.name  %></h5>
-            <p class="card-text"><%= business.city  %></p>
-            <a href="mailto:<%=business.email  %>" class="btn btn-success mb-3">Email Provider</a>
-            <% if (business.website) { %>
-            <a href="<%=business.website %>" target="_blank" class="btn btn-success mb-3">Website: <%= business.name.substr(0,8)  %></a>
-            <% } %>
+                    <!-- grades card -->
+                    <!-- <div class="card col-md-9 border m-3 shadow-sm" style="width: 30%; height: 30%">
+                        <div class="card-body m-3 p-6">
+                            <p class="card-text">
+                                <%= business.grade %>
+                            </p>
+                        </div>
+                    </div> -->
+                    <!-- specialized services card -->
+                    <% if (business.specializedservices) { %>
+                        <div class="card col-md-9 border m-3 shadow-sm" style="width: 30%; height: 30%">
+                            <div class="card-body m-3 p-6">
+                                <p class="card-text">
+                                    <%= business.specializedservices %>
+                                </p>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+                <a href="mailto:<%=business.email  %>" class="btn btn-success mb-3">
+                    Email Provider: <%=business.email %>
+                </a>
+                <% if (business.website) { %>
+                    <a href="<%=business.website %>" target="_blank" class="btn btn-success mb-3">
+                        <%= business.website %>
+                    </a>
+                    <% } %>
+            </div>
         </div>
-        </div>
-    
-</div>
+    </div>
+    </div>

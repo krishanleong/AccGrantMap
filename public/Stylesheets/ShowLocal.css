@@ -1,13 +1,17 @@
-.card {    
-    border-radius: 15px;
+.card {
+  border-radius: 15px;
 }
 
 .card-body {
-    border-radius: 15px;
-    border: 2px solid black;
-    margin: 10px;
+  border-radius: 15px;
+  border: 2px solid black;
+  margin: 10px;
 }
 
 body {
-    background-color: #586f6b;
+  background-color: #f9eae1;
+}
+
+.navbar {
+  background-color: #cc8b86;
 }
