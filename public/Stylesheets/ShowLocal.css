@@ -15,3 +15,12 @@ body {
 .navbar {
   background-color: #cc8b86;
 }
+
+h1 {
+  margin: 20px;
+}
+
+.card-title-link:hover {
+  text-decoration: none;
+  opacity: 75%;
+}
